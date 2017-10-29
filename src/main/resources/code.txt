@@ -1,0 +1,14 @@
+public class Formatter {
+    public static void main(final String[] args) {
+        Path testFilePath = Paths.get("D:\\test\\testfile.txt");
+        try{
+            List<String> lines = Files.readAllLines(testFilePath, Charset.defaultCharset());
+            lines = Tabulation.Tabulation(lines);
+            for (String line : lines) {
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
