@@ -1,18 +1,18 @@
 import java.util.List;
 
 /**
- * Created by User on 27.10.2017.
+ * Adding tabulation at the start of the line depending on it's level
  */
-public final class Tabulation {
+final class Tabulation {
 
-    public static List<String> Tabulation(List<String> lines){
+    public static List<String> createTabulation(final List<String> lines) {
         int level = 0;
-        for(int i=0; i<lines.size();i++){
-            if(lines.get(i).indexOf("}")==lines.get(i).length()-1){
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).indexOf("}") == lines.get(i).length() - 1) {
                 level--;
             }
-            lines.set(i,addSpaces(level,lines.get(i)));
-            if(lines.get(i).indexOf("{")==lines.get(i).length()-1){
+            lines.set(i, addSpaces(level, lines.get(i)));
+            if (lines.get(i).indexOf("{") == lines.get(i).length() - 1) {
                 level++;
             }
 
@@ -20,9 +20,9 @@ public final class Tabulation {
         return lines;
     }
 
-    private static String addSpaces(int lvl, String line){
+    private static String addSpaces(final int lvl, final String line) {
         StringBuffer result = new StringBuffer();
-        for(int i=0;i<lvl;i++){
+        for (int i = 0; i < lvl; i++) {
             result.append("    ");
         }
         return result.append(line).toString();
