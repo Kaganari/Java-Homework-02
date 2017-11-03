@@ -39,7 +39,7 @@ public class Formatter {
         }*/
         File input = new File("src/main/resources/Formatter.java");
         File output = new File("src/main/resources/codeOutput.txt");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(input), Charset.forName("UTF-8")));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(input), UTF_8));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output),UTF_8));
         FileReader f_r = new FileReader(input);
         FReader fr = new FReader(reader);
