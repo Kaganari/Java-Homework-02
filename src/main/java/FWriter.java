@@ -9,8 +9,12 @@ public class FWriter implements IWriter {
     FWriter(final BufferedWriter bw) {
         this.bw = bw;
     }
-    public void writeChar(final File file, final int ch) throws IOException {
+    public void writeChar(final File file, final char ch) throws IOException {
         bw.write(ch);
-        bw.close();
+        bw.flush();
+    }
+    public void writeChar(final File file, final String ch) throws IOException {
+        bw.write(ch);
+        bw.flush();
     }
 }

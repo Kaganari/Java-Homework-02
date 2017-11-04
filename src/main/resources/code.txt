@@ -1,4 +1,4 @@
-public class Formatter {
+﻿public class Formatter {
     public static void main(final String[] args) {
         Path testFilePath = Paths.get("D:\\test\\testfile.txt");
         try{

@@ -21,7 +21,7 @@ final class Tabulation {
     }
 
     private static String addSpaces(final int lvl, final String line) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < lvl; i++) {
             result.append("    ");
         }
