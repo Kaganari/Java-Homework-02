@@ -14,6 +14,8 @@ public final class SymbolFixer {
      * Changing symbol and writing it in file
      * @param reader just reader
      * @param writer just writer
+     * @throws  ReaderException custom reader exception
+     * @throws  WriterException custom writer exception
      */
     static void fixSymbol(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
         int level = 0;
@@ -22,27 +24,32 @@ public final class SymbolFixer {
         try {
             while (reader.hasMoreChars()) {
                 char inputChar = reader.readChar();
-                if (inputChar != ' ' && inputChar != '\n') {
+                if (inputChar != ' ' && inputChar != '\n' && inputChar != '\r') {
                     codeStarted = true;
+
+                    if (!spacesPlaced) {
+                        if (inputChar != '}') {
+                            makeTabulations(level, writer);
+                            spacesPlaced = true;
+                        } else { // Because "}" must be on one level to the left, than line before it
+                            makeTabulations(level - 1, writer);
+                            spacesPlaced = true;
+                        }
+                    }
                 }
                 if (inputChar == '{' || inputChar == '}' || inputChar == ';') {
                     codeStarted = false;
                     spacesPlaced = false;
                 }
-                if (inputChar == '\n') {
-                    continue;
-                }
                 switch (inputChar) {
                     case '{':
-                        if (previousChar == ')' && inputChar != ';' && inputChar != ' ') {
+                        if (previousChar == ')' || previousChar != ' ') {
                             writer.writeChar(" ");
                         }
                         writer.writeChar("{\n");
                         level++;
                         break;
                     case '}':
-                        writer.writeChar("\n");
-                        makeTabulations(level - 1, writer);
                         level--;
                         writer.writeChar("}\n");
                         break;
@@ -55,19 +62,17 @@ public final class SymbolFixer {
                         }
                         break;
                     case '\n':
-                        //writer.writeChar("");
+                        writer.writeChar("");
                         break;
-//                    case '\r':
-//                        writer.writeChar("");
-//                        break;
+                    case '\r':
+                        writer.writeChar("");
+                        break;
                     default:
                         writer.writeChar(String.valueOf(inputChar));
                         break;
                 }
-                previousChar = inputChar;
-                if (!spacesPlaced) {
-                    makeTabulations(level, writer);
-                    spacesPlaced = true;
+                if (codeStarted) {
+                    previousChar = inputChar;
                 }
             }
             //writer.close();

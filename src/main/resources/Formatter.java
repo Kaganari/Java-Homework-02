@@ -1,6 +1,4 @@
-import it.sevenbits.packages.reader.implementation.FileReader;
-import it.sevenbits.packages.writer.implementation.FileWriter;
-import it.sevenbits.packages.SymbolFixer;s;
+s;
 import java.io.*;
 import static java.nio.charset.StandardCharsets.*;
 
