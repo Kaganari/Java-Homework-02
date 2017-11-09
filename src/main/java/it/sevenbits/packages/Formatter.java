@@ -19,10 +19,8 @@ public final class Formatter {
     public static void main(final String[] args) throws IOException {
         String input = "src/main/resources/Formatter.java";
         String output = "src/main/resources/codeOutput.java";
-            IReader reader = new FileReader(input);
-            IWriter writer = new FileWriter(output);
-            SymbolFixer.fixSymbol(reader, writer);
-
-
+        IReader reader = new FileReader(input);
+        IWriter writer = new FileWriter(output);
+        SymbolFixer.fixSymbol(reader, writer);
     }
 }

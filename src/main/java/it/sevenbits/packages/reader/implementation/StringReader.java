@@ -6,7 +6,7 @@ import it.sevenbits.packages.reader.ReaderException;
 /**
  * Implementation of IReader for reading from strings
  */
-class StringReader implements IReader {
+public class StringReader implements IReader {
     private int i = -1;
     private String string;
     /**
@@ -34,6 +34,6 @@ class StringReader implements IReader {
      * @throws ReaderException custom reader exception
      */
     public boolean hasMoreChars() throws ReaderException {
-        return (i < string.length());
+        return (i < string.length()-1);
     }
 }

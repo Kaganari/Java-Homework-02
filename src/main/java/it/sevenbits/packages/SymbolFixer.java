@@ -18,6 +18,7 @@ public final class SymbolFixer {
     static void fixSymbol(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
         int level = 0;
         boolean codeStarted = false, spacesPlaced = false;
+        char previousChar = '\00';
         try {
             while (reader.hasMoreChars()) {
                 char inputChar = reader.readChar();
@@ -33,6 +34,9 @@ public final class SymbolFixer {
                 }
                 switch (inputChar) {
                     case '{':
+                        if (previousChar == ')' && inputChar != ';' && inputChar != ' ') {
+                            writer.writeChar(" ");
+                        }
                         writer.writeChar("{\n");
                         level++;
                         break;
@@ -60,6 +64,7 @@ public final class SymbolFixer {
                         writer.writeChar(String.valueOf(inputChar));
                         break;
                 }
+                previousChar = inputChar;
                 if (!spacesPlaced) {
                     makeTabulations(level, writer);
                     spacesPlaced = true;
