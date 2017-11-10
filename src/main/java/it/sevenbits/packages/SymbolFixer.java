@@ -75,7 +75,7 @@ public final class SymbolFixer {
                     previousChar = inputChar;
                 }
             }
-            //writer.close();
+
         } catch (ReaderException e) {
             throw new ReaderException("Can't read from file", e);
         } catch (WriterException e) {
@@ -94,6 +94,7 @@ public final class SymbolFixer {
             } catch (WriterException e) {
                 throw new WriterException("Can't write to the file", e);
             }
+
         }
     }
 }

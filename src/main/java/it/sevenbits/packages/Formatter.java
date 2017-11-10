@@ -1,9 +1,7 @@
 package it.sevenbits.packages;
 
 import it.sevenbits.packages.reader.implementation.FileReader;
-import it.sevenbits.packages.reader.IReader;
 import it.sevenbits.packages.writer.implementation.FileWriter;
-import it.sevenbits.packages.writer.IWriter;
 
 import java.io.IOException;
 
@@ -19,8 +17,10 @@ public final class Formatter {
     public static void main(final String[] args) throws IOException {
         String input = "src/main/resources/Formatter.java";
         String output = "src/main/resources/codeOutput.java";
-        IReader reader = new FileReader(input);
-        IWriter writer = new FileWriter(output);
+        FileReader reader = new FileReader(input);
+        FileWriter writer = new FileWriter(output);
         SymbolFixer.fixSymbol(reader, writer);
+        reader.close();
+        writer.close();
     }
 }

@@ -1,5 +1,6 @@
 package it.sevenbits.packages.reader.implementation;
 
+import it.sevenbits.packages.IClosable;
 import it.sevenbits.packages.reader.IReader;
 import it.sevenbits.packages.reader.ReaderException;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 /**
  * FileReader class. Reading chars and checking for more chars in file.
  */
-public class FileReader implements IReader {
+public class FileReader implements IReader, IClosable{
     private int ch;
     private BufferedInputStream fileInputStream;
 
@@ -50,7 +51,7 @@ public class FileReader implements IReader {
         }
         return ch != -1;
     }
-
+    @Override
     public void close() throws IOException {
         fileInputStream.close();
     }
