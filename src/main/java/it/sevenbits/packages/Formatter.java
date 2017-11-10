@@ -15,8 +15,15 @@ public final class Formatter {
      * @throws IOException exception
      */
     public static void main(final String[] args) throws IOException {
-        String input = "src/main/resources/Formatter.java";
-        String output = "src/main/resources/codeOutput.java";
+        String input;
+        String output;
+        if (args.length == 2) {
+            input = args[0];
+            output = args[1];
+        } else {
+            input = "src/main/resources/Formatter.java";
+            output = "src/main/resources/codeOutput.java";
+        }
         FileReader reader = new FileReader(input);
         FileWriter writer = new FileWriter(output);
         SymbolFixer.fixSymbol(reader, writer);
