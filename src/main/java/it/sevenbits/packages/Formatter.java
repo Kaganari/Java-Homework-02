@@ -1,5 +1,6 @@
 package it.sevenbits.packages;
 
+import it.sevenbits.packages.formatter.implementation.SymbolFixer;
 import it.sevenbits.packages.reader.implementation.FileReader;
 import it.sevenbits.packages.writer.implementation.FileWriter;
 

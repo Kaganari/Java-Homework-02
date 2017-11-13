@@ -1,4 +1,5 @@
 s;
+asd;
 import java.io.*;
 import static java.nio.charset.StandardCharsets.*;
 public class Formatter {

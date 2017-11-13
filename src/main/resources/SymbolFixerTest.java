@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 
-import it.sevenbits.packages.SymbolFixer;
+import it.sevenbits.packages.formatter.implementation.SymbolFixer;
 import org.junit.*;
 
 /**

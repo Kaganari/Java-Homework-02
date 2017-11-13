@@ -1,5 +1,6 @@
-package it.sevenbits.packages;
+package it.sevenbits.packages.formatter.implementation;
 
+import it.sevenbits.packages.formatter.IFormatter;
 import it.sevenbits.packages.reader.IReader;
 import it.sevenbits.packages.reader.ReaderException;
 import it.sevenbits.packages.writer.IWriter;
@@ -8,7 +9,7 @@ import it.sevenbits.packages.writer.WriterException;
 /**
  * Class contains two static methods - changing symbol and making tabulations
  */
-public final class SymbolFixer {
+public final class SymbolFixer implements IFormatter {
     private SymbolFixer(){}
     /**
      * Changing symbol and writing it in file
@@ -17,7 +18,7 @@ public final class SymbolFixer {
      * @throws  ReaderException custom reader exception
      * @throws  WriterException custom writer exception
      */
-    static void fixSymbol(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
+    public static void fixSymbol(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
         int level = 0;
         boolean codeStarted = false, spacesPlaced = false;
         char previousChar = '\00';

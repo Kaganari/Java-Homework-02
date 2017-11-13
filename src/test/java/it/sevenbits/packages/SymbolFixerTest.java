@@ -1,5 +1,6 @@
 package it.sevenbits.packages;
 
+import it.sevenbits.packages.formatter.implementation.SymbolFixer;
 import org.junit.Before;
 import org.junit.Test;
 import it.sevenbits.packages.reader.implementation.StringReader;
