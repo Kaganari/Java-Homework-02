@@ -1,4 +1,4 @@
-package it.sevenbits.packages.writer;
+package it.sevenbits.packages.IO.writer;
 
 import java.io.IOException;
 
@@ -6,6 +6,12 @@ import java.io.IOException;
  * Custom FileWriterException
  */
 public class WriterException extends IOException {
+    /**
+     * Empty constructor
+     */
+    public WriterException() {
+        super();
+    }
 
     /**
      * WriterException

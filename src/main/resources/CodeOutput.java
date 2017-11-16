@@ -6,7 +6,7 @@ public class Formatter {
     public static void main(final String[] args) throws IOException {
         int ch, level = 0;
         char[] fixed;
-        File input = new File("src/main/java/Formatter.java");
+        File input = new File("src/main/java/App.java");
         File output = new File("src/main/resources/codeOutput.java");
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(input), UTF_8));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), UTF_8));

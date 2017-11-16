@@ -1,19 +1,17 @@
 package it.sevenbits.packages.formatter;
 
-import it.sevenbits.packages.reader.IReader;
-import it.sevenbits.packages.reader.ReaderException;
-import it.sevenbits.packages.writer.IWriter;
-import it.sevenbits.packages.writer.WriterException;
+import it.sevenbits.packages.IO.reader.IReader;
+import it.sevenbits.packages.IO.writer.IWriter;
 
 /**
  * Interface for formatters.
  */
 public interface IFormatter {
     /**
+     * Changing symbols from input stream and writing it in output
      * @param reader some reader
      * @param writer some writer
-     * @throws ReaderException custom reader exception
-     * @throws WriterException custom writer exception
+     * @throws FormatterException custom reader exception
      */
-    static void fixSymbol(IReader reader, IWriter writer) throws ReaderException, WriterException {};
+    void format(IReader reader, IWriter writer) throws FormatterException;
 }

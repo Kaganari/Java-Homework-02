@@ -1,8 +1,8 @@
-package it.sevenbits.packages.writer.implementation;
+package it.sevenbits.packages.IO.writer.implementation;
 
-import it.sevenbits.packages.IClosable;
-import it.sevenbits.packages.writer.IWriter;
-import it.sevenbits.packages.writer.WriterException;
+import it.sevenbits.packages.IO.IClosable;
+import it.sevenbits.packages.IO.writer.IWriter;
+import it.sevenbits.packages.IO.writer.WriterException;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -29,10 +29,11 @@ public class FileWriter implements IWriter, IClosable {
     }
 
     /**
+     * Writing chars to output file
      * @param str string to write to file
      * @throws WriterException  custom writer exception
      */
-    public void writeChar(final String str) throws WriterException {
+    public void writeChars(final String str) throws WriterException {
         try {
             fileOutputStream.write(str.getBytes());
         } catch (IOException e) {

@@ -1,7 +1,7 @@
-package it.sevenbits.packages;
+package it.sevenbits.packages.IO;
 
 /**
- * Created by User on 02.11.2017.
+ * Interface for closing streams
  */
 public interface IClosable extends AutoCloseable {
     @Override

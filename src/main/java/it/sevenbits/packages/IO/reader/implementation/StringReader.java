@@ -1,7 +1,7 @@
-package it.sevenbits.packages.reader.implementation;
+package it.sevenbits.packages.IO.reader.implementation;
 
-import it.sevenbits.packages.reader.IReader;
-import it.sevenbits.packages.reader.ReaderException;
+import it.sevenbits.packages.IO.reader.IReader;
+import it.sevenbits.packages.IO.reader.ReaderException;
 
 /**
  * Implementation of IReader for reading from strings
@@ -19,21 +19,21 @@ public class StringReader implements IReader {
     }
 
     /**
-     * Reading file char by char
+     * Returning read char
      * @return one char
      * @throws ReaderException custom reader exception
      */
-    public char readChar() throws ReaderException {
+    public char getChar() throws ReaderException {
         i++;
         return string.charAt(i);
     }
 
     /**
-     * Checking, does the file has more chars or not
+     * Checking, does the string has more chars and reading one
      * @return true, if there are more char(s)
      * @throws ReaderException custom reader exception
      */
-    public boolean hasMoreChars() throws ReaderException {
-        return (i < string.length()-1);
+    public boolean readChar() throws ReaderException {
+        return (i < string.length() - 1);
     }
 }

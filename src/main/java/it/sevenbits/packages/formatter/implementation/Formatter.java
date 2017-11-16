@@ -1,33 +1,35 @@
 package it.sevenbits.packages.formatter.implementation;
 
+import it.sevenbits.packages.formatter.FormatterException;
 import it.sevenbits.packages.formatter.IFormatter;
-import it.sevenbits.packages.reader.IReader;
-import it.sevenbits.packages.reader.ReaderException;
-import it.sevenbits.packages.writer.IWriter;
-import it.sevenbits.packages.writer.WriterException;
+import it.sevenbits.packages.IO.reader.IReader;
+import it.sevenbits.packages.IO.reader.ReaderException;
+import it.sevenbits.packages.IO.writer.IWriter;
+import it.sevenbits.packages.IO.writer.WriterException;
 
 /**
  * Class contains two static methods - changing symbol and making tabulations
  */
-public final class SymbolFixer implements IFormatter {
-    private SymbolFixer(){}
+public final class Formatter implements IFormatter {
+    /**
+     * Empty constructor
+     */
+    public Formatter(){}
     /**
      * Changing symbol and writing it in file
      * @param reader just reader
      * @param writer just writer
-     * @throws  ReaderException custom reader exception
-     * @throws  WriterException custom writer exception
+     * @throws  FormatterException when can't format code
      */
-    public static void fixSymbol(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
+    public void format(final IReader reader, final IWriter writer) throws FormatterException {
         int level = 0;
         boolean codeStarted = false, spacesPlaced = false;
         char previousChar = '\00';
         try {
-            while (reader.hasMoreChars()) {
-                char inputChar = reader.readChar();
+            while (reader.readChar()) {
+                char inputChar = reader.getChar();
                 if (inputChar != ' ' && inputChar != '\n' && inputChar != '\r') {
                     codeStarted = true;
-
                     if (!spacesPlaced) {
                         if (inputChar != '}') {
                             makeTabulations(level, writer);
@@ -45,31 +47,31 @@ public final class SymbolFixer implements IFormatter {
                 switch (inputChar) {
                     case '{':
                         if (previousChar == ')' || previousChar != ' ') {
-                            writer.writeChar(" ");
+                            writer.writeChars(" ");
                         }
-                        writer.writeChar("{\n");
+                        writer.writeChars("{\n");
                         level++;
                         break;
                     case '}':
                         level--;
-                        writer.writeChar("}\n");
+                        writer.writeChars("}\n");
                         break;
                     case ';':
-                        writer.writeChar(";\n");
+                        writer.writeChars(";\n");
                         break;
                     case ' ':
                         if (codeStarted) {
-                            writer.writeChar(" ");
+                            writer.writeChars(" ");
                         }
                         break;
                     case '\n':
-                        writer.writeChar("");
+                        writer.writeChars("");
                         break;
                     case '\r':
-                        writer.writeChar("");
+                        writer.writeChars("");
                         break;
                     default:
-                        writer.writeChar(String.valueOf(inputChar));
+                        writer.writeChars(String.valueOf(inputChar));
                         break;
                 }
                 if (codeStarted) {
@@ -77,10 +79,8 @@ public final class SymbolFixer implements IFormatter {
                 }
             }
 
-        } catch (ReaderException e) {
-            throw new ReaderException("Can't read from file", e);
-        } catch (WriterException e) {
-            throw new WriterException("Can't write to the file", e);
+        } catch (ReaderException | WriterException e) {
+            throw new FormatterException("Something's wrong", e);
         }
     }
 
@@ -91,7 +91,7 @@ public final class SymbolFixer implements IFormatter {
     private static void makeTabulations(final int level, final IWriter writer) throws WriterException {
         for (int i = 0; i < level; i++) {
             try {
-                writer.writeChar("    ");
+                writer.writeChars("    ");
             } catch (WriterException e) {
                 throw new WriterException("Can't write to the file", e);
             }

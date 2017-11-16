@@ -1,8 +1,8 @@
-package it.sevenbits.packages.reader.implementation;
+package it.sevenbits.packages.IO.reader.implementation;
 
-import it.sevenbits.packages.IClosable;
-import it.sevenbits.packages.reader.IReader;
-import it.sevenbits.packages.reader.ReaderException;
+import it.sevenbits.packages.IO.IClosable;
+import it.sevenbits.packages.IO.reader.IReader;
+import it.sevenbits.packages.IO.reader.ReaderException;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * FileReader class. Reading chars and checking for more chars in file.
  */
-public class FileReader implements IReader, IClosable{
+public class FileReader implements IReader, IClosable {
     private int ch;
     private BufferedInputStream fileInputStream;
 
@@ -30,26 +30,26 @@ public class FileReader implements IReader, IClosable{
     }
 
     /**
-     * Reading file char by char
+     * Returning read char
      * @return one char
      * @throws ReaderException custom reader exception
      */
-    public char readChar() throws ReaderException {
+    public char getChar() throws ReaderException {
         return (char) ch;
     }
 
     /**
-     * Checking, does the file has more chars or not
+     * Checking, does the file has more chars and reading one
      * @return true, if there are more char(s)
      * @throws ReaderException custom reader exception
      */
-    public boolean hasMoreChars() throws ReaderException {
+    public boolean readChar() throws ReaderException {
         try {
             ch = fileInputStream.read();
-        } catch (IOException e) {
+            return ch != -1;
+        } catch (Exception e) {
             throw new ReaderException("Can't read file", e);
         }
-        return ch != -1;
     }
     @Override
     public void close() throws IOException {
