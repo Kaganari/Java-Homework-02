@@ -1,6 +1,8 @@
 package it.sevenbits.packages;
 
 import it.sevenbits.packages.formatter.implementation.Formatter;
+import it.sevenbits.packages.lexer.ILexer;
+import it.sevenbits.packages.lexer.Lexer;
 import org.junit.Before;
 import org.junit.Test;
 import it.sevenbits.packages.IO.reader.implementation.StringReader;
@@ -26,7 +28,8 @@ public class FormatterTest {
         expectedString = "public void main() {\n    System.out.println(\"Hello World\");\n}\n";
         reader = new StringReader(inputString);
         Formatter formatter = new Formatter();
-        formatter.format(reader, writer);
+        ILexer lexer = new Lexer(reader);
+        formatter.format(lexer, writer);
         assertEquals("Wrong text", expectedString, writer.getString());
     }
 
@@ -36,7 +39,8 @@ public class FormatterTest {
         expectedString = "public class Formatter {\n    public static void main(final String[] args) throws IOException {\n        int ch, level = 0;\n        char[] fixed;\n        File input = new File(\"src/main/java/Formatter.java\");\n        File output = new File(\"src/main/resources/codeOutput.java\");\n";
         reader = new StringReader(inputString);
         Formatter formatter = new Formatter();
-        formatter.format(reader, writer);
+        ILexer lexer = new Lexer(reader);
+        formatter.format(lexer, writer);
         assertEquals("Wrong text", expectedString, writer.getString());
     }
 
@@ -46,7 +50,8 @@ public class FormatterTest {
         expectedString = "public void main() {\n    System.out.println(\"Hello World\");\n}\n";
         reader = new StringReader(inputString);
         Formatter formatter = new Formatter();
-        formatter.format(reader, writer);
+        ILexer lexer = new Lexer(reader);
+        formatter.format(lexer, writer);
         assertEquals("Wrong text", expectedString, writer.getString());
     }
 
@@ -56,7 +61,8 @@ public class FormatterTest {
         expectedString = "public void main() {\n    System.out.println(\"Hello World\");\n}\n";
         reader = new StringReader(inputString);
         Formatter formatter = new Formatter();
-        formatter.format(reader, writer);
+        ILexer lexer = new Lexer(reader);
+        formatter.format(lexer, writer);
         assertEquals("Wrong text", expectedString, writer.getString());
     }
 }

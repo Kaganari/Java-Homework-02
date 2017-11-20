@@ -1,6 +1,6 @@
 s;
-
         asd;
+
 
 import java.io.*;
 
@@ -14,9 +14,6 @@ public class Formatter {public static void main(final String[] args) throws IOEx
             //System.out.print(fixed[0]);
             fw.writeChar(output, SymbolFixer.fixSymbol((char) ch, level, codeStarted)[0]);
             if (!spacesPlaced) {
-                for (int i = 0; i < level; i++) {
-                    fw.writeChar(output, "    ");
-                }
                 spacesPlaced = true;
             }
         }

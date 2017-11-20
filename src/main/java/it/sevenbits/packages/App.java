@@ -4,6 +4,8 @@ import it.sevenbits.packages.formatter.FormatterException;
 import it.sevenbits.packages.formatter.implementation.Formatter;
 import it.sevenbits.packages.IO.reader.implementation.FileReader;
 import it.sevenbits.packages.IO.writer.implementation.FileWriter;
+import it.sevenbits.packages.lexer.ILexer;
+import it.sevenbits.packages.lexer.Lexer;
 
 import java.io.IOException;
 
@@ -31,7 +33,8 @@ public final class App {
                 FileReader reader = new FileReader(input);
                 FileWriter writer = new FileWriter(output);
         ) {
-            formatter.format(reader, writer);
+            ILexer lexer = new Lexer(reader);
+            formatter.format(lexer, writer);
         } catch (FormatterException e) {
             throw new FormatterException("Something's wrong", e);
         }

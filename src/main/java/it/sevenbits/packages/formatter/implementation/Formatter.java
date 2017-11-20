@@ -6,6 +6,10 @@ import it.sevenbits.packages.IO.reader.IReader;
 import it.sevenbits.packages.IO.reader.ReaderException;
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.IO.writer.WriterException;
+import it.sevenbits.packages.lexer.ILexer;
+import it.sevenbits.packages.lexer.IToken;
+import it.sevenbits.packages.lexer.LexerException;
+import it.sevenbits.packages.lexer.Token;
 
 /**
  * Class contains two static methods - changing symbol and making tabulations
@@ -17,21 +21,23 @@ public final class Formatter implements IFormatter {
     public Formatter(){}
     /**
      * Changing symbol and writing it in file
-     * @param reader just reader
+     * @param lexer just lexer
      * @param writer just writer
      * @throws  FormatterException when can't format code
      */
-    public void format(final IReader reader, final IWriter writer) throws FormatterException {
+    public void format(final ILexer lexer, final IWriter writer) throws FormatterException {
         int level = 0;
         boolean codeStarted = false, spacesPlaced = false;
-        char previousChar = '\00';
+        IToken previousToken = new Token(" ", " ");
         try {
-            while (reader.readChar()) {
-                char inputChar = reader.getChar();
-                if (inputChar != ' ' && inputChar != '\n' && inputChar != '\r') {
+            while (lexer.hasMoreTokens()) {
+                IToken token = lexer.readToken();
+                String name = token.getName();
+                String lexeme = token.getLexeme();
+                if (!name.equals("whiteSpace") && !name.equals("newLine")) {
                     codeStarted = true;
                     if (!spacesPlaced) {
-                        if (inputChar != '}') {
+                        if (!name.equals("bracketClose")) {
                             makeTabulations(level, writer);
                             spacesPlaced = true;
                         } else { // Because "}" must be on one level to the left, than line before it
@@ -40,42 +46,38 @@ public final class Formatter implements IFormatter {
                         }
                     }
                 }
-                if (inputChar == '{' || inputChar == '}' || inputChar == ';') {
+                if (name.equals("bracketOpen") || name.equals("bracketClose") || name.equals("semicolon")) {
                     codeStarted = false;
                     spacesPlaced = false;
                 }
-                switch (inputChar) {
-                    case '{':
-                        if (previousChar == ')' || previousChar != ' ') {
-                            writer.writeChars(" ");
-                        }
-                        writer.writeChars("{\n");
-                        level++;
-                        break;
-                    case '}':
-                        level--;
-                        writer.writeChars("}\n");
-                        break;
-                    case ';':
-                        writer.writeChars(";\n");
-                        break;
-                    case ' ':
-                        if (codeStarted) {
-                            writer.writeChars(" ");
-                        }
-                        break;
-                    case '\n':
-                        writer.writeChars("");
-                        break;
-                    case '\r':
-                        writer.writeChars("");
-                        break;
-                    default:
-                        writer.writeChars(String.valueOf(inputChar));
-                        break;
+                //Switch
+                if (name.equals("bracketOpen")) {
+                    if (previousToken.getLexeme().equals(")") || !previousToken.getName().equals("whiteSpace")) {
+                        writer.writeChars(" ");
+                    }
+                    writer.writeChars("{\n");
+                    level++;
+                }
+                if (name.equals("bracketClose")) {
+                    level--;
+                    writer.writeChars("}\n");
+                }
+                if (name.equals("semicolon")) {
+                    writer.writeChars(";\n");
+                }
+                if (name.equals("whiteSpace")) {
+                    if (codeStarted) {
+                        writer.writeChars(" ");
+                    }
+                }
+                if (name.equals("newLine")) {
+                    writer.writeChars("");
+                }
+                if (name.equals("otherChar")) {
+                    writer.writeChars(lexeme);
                 }
                 if (codeStarted) {
-                    previousChar = inputChar;
+                    previousToken = token;
                 }
             }
 
