@@ -9,5 +9,11 @@ public interface IWriter {
      * @param str String, which needs to write
      * @throws WriterException custom writer exception
      */
-    void writeChars(String str) throws WriterException;
+    void write(String str) throws WriterException;
+    /**
+     * Writing char into output stream
+     * @param ch char, which needs to write
+     * @throws WriterException custom writer exception
+     */
+    void write(char ch) throws WriterException;
 }

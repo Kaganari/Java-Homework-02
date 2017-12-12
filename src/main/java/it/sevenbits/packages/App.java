@@ -1,13 +1,14 @@
 package it.sevenbits.packages;
 
 import it.sevenbits.packages.formatter.FormatterException;
+import it.sevenbits.packages.formatter.IFormatter;
 import it.sevenbits.packages.formatter.implementation.Formatter;
 import it.sevenbits.packages.IO.reader.implementation.FileReader;
 import it.sevenbits.packages.IO.writer.implementation.FileWriter;
-import it.sevenbits.packages.lexer.ILexer;
-import it.sevenbits.packages.lexer.Lexer;
+import it.sevenbits.packages.formatter.implementation.betterFormatter.BetterFormatter;
+import it.sevenbits.packages.lexer.betterLexer.BetterLexer;
+import it.sevenbits.packages.lexer.betterLexer.ILexer;
 
-import java.io.IOException;
 
 /**
  * Main method for App. Reading file and writing in another.
@@ -28,12 +29,12 @@ public final class App {
             input = "src/main/resources/Formatter.java";
             output = "src/main/resources/codeOutput.java";
         }
-        Formatter formatter = new Formatter();
+        IFormatter formatter = new BetterFormatter();
         try (
                 FileReader reader = new FileReader(input);
-                FileWriter writer = new FileWriter(output);
+                FileWriter writer = new FileWriter(output)
         ) {
-            ILexer lexer = new Lexer(reader);
+            ILexer lexer = new BetterLexer(reader);
             formatter.format(lexer, writer);
         } catch (FormatterException e) {
             throw new FormatterException("Something's wrong", e);

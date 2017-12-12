@@ -1,4 +1,4 @@
-package it.sevenbits.packages.lexer;
+package it.sevenbits.packages.token;
 
 /**
  *

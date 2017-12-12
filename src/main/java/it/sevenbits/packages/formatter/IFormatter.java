@@ -1,8 +1,7 @@
 package it.sevenbits.packages.formatter;
 
-import it.sevenbits.packages.IO.reader.IReader;
 import it.sevenbits.packages.IO.writer.IWriter;
-import it.sevenbits.packages.lexer.ILexer;
+import it.sevenbits.packages.lexer.betterLexer.ILexer;
 
 /**
  * Interface for formatters.

@@ -1,7 +1,5 @@
 package it.sevenbits.packages.IO.reader;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * Custom ReaderException, occurs when can't read from source

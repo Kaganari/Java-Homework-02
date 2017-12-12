@@ -21,8 +21,13 @@ public class StringWriter implements IWriter {
      * @param str String, which needs to write
      * @throws WriterException custom writer exception
      */
-    public void writeChars(final String str) throws WriterException {
+    public void write(final String str) throws WriterException {
         outputString.append(str);
+    }
+
+    @Override
+    public void write(final char ch) throws WriterException {
+        outputString.append(ch);
     }
 
     /**

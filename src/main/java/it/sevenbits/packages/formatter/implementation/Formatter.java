@@ -2,14 +2,12 @@ package it.sevenbits.packages.formatter.implementation;
 
 import it.sevenbits.packages.formatter.FormatterException;
 import it.sevenbits.packages.formatter.IFormatter;
-import it.sevenbits.packages.IO.reader.IReader;
-import it.sevenbits.packages.IO.reader.ReaderException;
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.IO.writer.WriterException;
-import it.sevenbits.packages.lexer.ILexer;
-import it.sevenbits.packages.lexer.IToken;
+import it.sevenbits.packages.lexer.betterLexer.ILexer;
+import it.sevenbits.packages.token.IToken;
 import it.sevenbits.packages.lexer.LexerException;
-import it.sevenbits.packages.lexer.Token;
+import it.sevenbits.packages.token.Token;
 
 /**
  * Class contains two static methods - changing symbol and making tabulations
@@ -34,10 +32,10 @@ public final class Formatter implements IFormatter {
                 IToken token = lexer.readToken();
                 String name = token.getName();
                 String lexeme = token.getLexeme();
-                if (!name.equals("whiteSpace") && !name.equals("newLine")) {
+                if (!name.equals("space") && !name.equals("newline")) {
                     codeStarted = true;
                     if (!spacesPlaced) {
-                        if (!name.equals("bracketClose")) {
+                        if (!name.equals("closebracket")) {
                             makeTabulations(level, writer);
                             spacesPlaced = true;
                         } else { // Because "}" must be on one level to the left, than line before it
@@ -46,42 +44,42 @@ public final class Formatter implements IFormatter {
                         }
                     }
                 }
-                if (name.equals("bracketOpen") || name.equals("bracketClose") || name.equals("semicolon")) {
+                if (name.equals("openbracket") || name.equals("closebracket") || name.equals("semicolon")) {
                     codeStarted = false;
                     spacesPlaced = false;
                 }
                 //Switch
-                if (name.equals("bracketOpen")) {
-                    if (previousToken.getLexeme().equals(")") || !previousToken.getName().equals("whiteSpace")) {
-                        writer.writeChars(" ");
+                if (name.equals("openbracket")) {
+                    if (previousToken.getLexeme().equals(")") || !previousToken.getName().equals("space")) {
+                        writer.write(" ");
                     }
-                    writer.writeChars("{\n");
+                    writer.write("{\n");
                     level++;
                 }
-                if (name.equals("bracketClose")) {
+                if (name.equals("openbracket")) {
                     level--;
-                    writer.writeChars("}\n");
+                    writer.write("}\n");
                 }
                 if (name.equals("semicolon")) {
-                    writer.writeChars(";\n");
+                    writer.write(";\n");
                 }
-                if (name.equals("whiteSpace")) {
+                if (name.equals("space")) {
                     if (codeStarted) {
-                        writer.writeChars(" ");
+                        writer.write(" ");
                     }
                 }
-                if (name.equals("newLine")) {
-                    writer.writeChars("");
+                if (name.equals("newline")) {
+                    writer.write("");
                 }
-                if (name.equals("otherChar")) {
-                    writer.writeChars(lexeme);
+                if (name.equals("char")) {
+                    writer.write(lexeme);
                 }
                 if (codeStarted) {
                     previousToken = token;
                 }
             }
 
-        } catch (ReaderException | WriterException e) {
+        } catch (WriterException | LexerException e) {
             throw new FormatterException("Something's wrong", e);
         }
     }
@@ -93,7 +91,7 @@ public final class Formatter implements IFormatter {
     private static void makeTabulations(final int level, final IWriter writer) throws WriterException {
         for (int i = 0; i < level; i++) {
             try {
-                writer.writeChars("    ");
+                writer.write("    ");
             } catch (WriterException e) {
                 throw new WriterException("Can't write to the file", e);
             }

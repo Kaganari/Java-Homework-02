@@ -1,5 +1,6 @@
 package it.sevenbits.packages.IO.writer.implementation;
 
+import it.sevenbits.packages.IO.CloseException;
 import it.sevenbits.packages.IO.IClosable;
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.IO.writer.WriterException;
@@ -33,19 +34,29 @@ public class FileWriter implements IWriter, IClosable {
      * @param str string to write to file
      * @throws WriterException  custom writer exception
      */
-    public void writeChars(final String str) throws WriterException {
+    public void write(final String str) throws WriterException {
         try {
             fileOutputStream.write(str.getBytes());
         } catch (IOException e) {
             throw new WriterException("Can't write.", e);
         }
     }
+
     @Override
-    public void close() {
+    public void write(final char ch) throws WriterException {
+        try {
+            fileOutputStream.write(ch);
+        } catch (IOException e) {
+            throw new WriterException("Can't write.", e);
+        }
+    }
+
+    @Override
+    public void close() throws CloseException {
         try {
             fileOutputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new CloseException("Can't close the file", e);
         }
     }
 }

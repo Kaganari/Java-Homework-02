@@ -1,7 +1,7 @@
 package it.sevenbits.packages;
 
 import it.sevenbits.packages.formatter.implementation.Formatter;
-import it.sevenbits.packages.lexer.ILexer;
+import it.sevenbits.packages.lexer.betterLexer.ILexer;
 import it.sevenbits.packages.lexer.Lexer;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,12 +1,12 @@
 package it.sevenbits.packages.IO.reader.implementation;
 
+import it.sevenbits.packages.IO.CloseException;
 import it.sevenbits.packages.IO.IClosable;
 import it.sevenbits.packages.IO.reader.IReader;
 import it.sevenbits.packages.IO.reader.ReaderException;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -15,6 +15,7 @@ import java.io.IOException;
 public class FileReader implements IReader, IClosable {
     private int ch;
     private BufferedInputStream fileInputStream;
+    private int preReadChar = -1;
 
     /**
      * Class constructor
@@ -24,7 +25,8 @@ public class FileReader implements IReader, IClosable {
     public FileReader(final String fileName) throws ReaderException {
         try {
             fileInputStream = new BufferedInputStream(new FileInputStream(fileName));
-        } catch (FileNotFoundException e) {
+            preReadChar = fileInputStream.read();
+        } catch (IOException e) {
             throw new ReaderException("Cannot find a file with such name.", e);
         }
     }
@@ -34,8 +36,8 @@ public class FileReader implements IReader, IClosable {
      * @return one char
      * @throws ReaderException custom reader exception
      */
-    public char getChar() throws ReaderException {
-        return (char) ch;
+    public boolean hasMoreChars() throws ReaderException {
+        return preReadChar >= 0;
     }
 
     /**
@@ -43,16 +45,21 @@ public class FileReader implements IReader, IClosable {
      * @return true, if there are more char(s)
      * @throws ReaderException custom reader exception
      */
-    public boolean readChar() throws ReaderException {
+    public char readChar() throws ReaderException {
         try {
-            ch = fileInputStream.read();
-            return ch != -1;
+            int prevChar = preReadChar;
+            preReadChar = fileInputStream.read();
+            return (char) prevChar;
         } catch (Exception e) {
             throw new ReaderException("Can't read file", e);
         }
     }
     @Override
-    public void close() throws IOException {
-        fileInputStream.close();
+    public void close() throws CloseException {
+        try {
+            fileInputStream.close();
+        } catch (IOException e) {
+            throw new CloseException("Can't close the file", e);
+        }
     }
 }

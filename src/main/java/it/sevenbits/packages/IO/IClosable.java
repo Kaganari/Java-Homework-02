@@ -5,5 +5,5 @@ package it.sevenbits.packages.IO;
  */
 public interface IClosable extends AutoCloseable {
     @Override
-    void close() throws Exception;
+    void close() throws CloseException;
 }

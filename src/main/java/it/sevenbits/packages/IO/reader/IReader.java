@@ -9,12 +9,12 @@ public interface IReader {
      * @return single char
      * @throws ReaderException custom reader exception
      */
-    char getChar() throws ReaderException;
+    boolean hasMoreChars() throws ReaderException;
 
     /**
      * Trying to read char from input
      * @return true, if it's not the end of file
      * @throws ReaderException custom reader exception
      */
-    boolean readChar() throws ReaderException;
+    char readChar() throws ReaderException;
 }
