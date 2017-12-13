@@ -74,6 +74,7 @@ public class CommandRepository implements ICommandRepository {
                 (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("onelinecomment"); });
 
+
         commands.put(new Pair<>(new State("slash"), '*'),
                 (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("openmultilinecomment"); });

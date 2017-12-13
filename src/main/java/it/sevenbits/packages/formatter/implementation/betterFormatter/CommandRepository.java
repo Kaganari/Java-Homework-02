@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class contains commands. It returns one based on state and
+ * This class contains commands. It returns one based on state and token
  */
 public class CommandRepository implements ICommandRepository {
     private final Map<Pair<State, String>, ICommand> commands = new HashMap<>();

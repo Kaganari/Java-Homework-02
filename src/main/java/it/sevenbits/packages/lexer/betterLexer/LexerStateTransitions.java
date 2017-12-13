@@ -23,7 +23,7 @@ public class LexerStateTransitions implements IStateTransitions {
         states.put(new Pair<>(new State("default"), '/'), new State("slash"));
         states.put(new Pair<>(new State("slash"), '/'), new State("onelinecomment"));
         states.put(new Pair<>(new State("onelinecomment"), (Character) null), new State("onelinecomment"));
-        states.put(new Pair<>(new State("onelinecomment"), '\r'), new State("newline"));
+        states.put(new Pair<>(new State("onelinecomment"), '\r'), new State("default"));
         states.put(new Pair<>(new State("slash"), '*'), new State("openmultilinecomment"));
 
         states.put(new Pair<>(new State("default"), '\r'), new State("newline"));

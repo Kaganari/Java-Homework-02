@@ -1,6 +1,5 @@
 package it.sevenbits.packages.formatter.implementation.betterFormatter;
 
-import it.sevenbits.packages.IO.reader.ReaderException;
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.State;
 import it.sevenbits.packages.formatter.FormatterException;
