@@ -39,6 +39,12 @@ public class StateTransitions implements IStateTransitions {
         transitions.put(new Pair<>(new State("writemulticomment"), "closemultilinecomment"), new State("start"));
         transitions.put(new Pair<>(new State("writemulticomment"), null), new State("writemulticomment"));
 
+        transitions.put(new Pair<>(new State("start"), "slash"), new State("start"));
+        transitions.put(new Pair<>(new State("default"), "slash"), new State("default"));
+
+        transitions.put(new Pair<>(new State("start"), "stringliteral"), new State("start"));
+        transitions.put(new Pair<>(new State("default"), "stringliteral"), new State("default"));
+
     }
 
     @Override

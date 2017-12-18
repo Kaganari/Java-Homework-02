@@ -45,8 +45,7 @@ public class CommandRepository implements ICommandRepository {
         commands.put(new Pair<>(new State("start"), "char"),
                 (token, context) -> {
                     context.writeIndent();
-                    context.writeLexeme(token.getLexeme());
-                });
+                    context.writeLexeme(token.getLexeme()); });
 
         commands.put(new Pair<>(new State("default"), "char"),
                 (token, context) -> context.writeLexeme(token.getLexeme()));
@@ -95,19 +94,31 @@ public class CommandRepository implements ICommandRepository {
                     context.increaseIndentCountLevel();
                     context.writeNewLine(); });
 
-//        commands.put(new Pair<>(new State("start"), "closebracket"),
-//                (token, context) -> {
-//                    context.writeLexeme(token.getLexeme());
-//                    context.decreaseIndentCountLevel();
-//                    context.writeNewLine();
-//                    context.writeIndent(); });
-
         commands.put(new Pair<>(new State("start"), "closebracket"),
                 (token, context) -> {
                     context.decreaseIndentCountLevel();
                     context.writeIndent();
                     context.writeLexeme(token.getLexeme());
                     context.writeNewLine(); });
+
+        commands.put(new Pair<>(new State("start"), "slash"),
+                (token, context) -> {
+                    context.writeIndent();
+                    context.writeLexeme(token.getLexeme()); });
+
+        commands.put(new Pair<>(new State("default"), "slash"),
+                (token, context) -> {
+                    context.writeIndent();
+                    context.writeLexeme(token.getLexeme()); });
+
+        commands.put(new Pair<>(new State("default"), "stringliteral"),
+                (token, context) -> {
+                    context.writeLexeme(token.getLexeme()); });
+
+        commands.put(new Pair<>(new State("start"), "stringliteral"),
+                (token, context) -> {
+                    context.writeLexeme(token.getLexeme()); });
+
     }
 
     @Override

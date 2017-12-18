@@ -26,8 +26,8 @@ public final class App {
             input = args[0];
             output = args[1];
         } else {
-            input = "src/main/resources/Formatter.java";
-            output = "src/main/resources/codeOutput.java";
+            input = "src/test/resources/Formatter.java";
+            output = "src/test/resources/codeOutput.java";
         }
         IFormatter formatter = new BetterFormatter();
         try (
