@@ -2,12 +2,11 @@ package it.sevenbits.packages;
 
 import it.sevenbits.packages.formatter.FormatterException;
 import it.sevenbits.packages.formatter.IFormatter;
-import it.sevenbits.packages.formatter.implementation.Formatter;
 import it.sevenbits.packages.IO.reader.implementation.FileReader;
 import it.sevenbits.packages.IO.writer.implementation.FileWriter;
-import it.sevenbits.packages.formatter.implementation.betterFormatter.BetterFormatter;
-import it.sevenbits.packages.lexer.betterLexer.BetterLexer;
-import it.sevenbits.packages.lexer.betterLexer.ILexer;
+import it.sevenbits.packages.stateMachine.stateMachineFormatter.StateMachineFormatter;
+import it.sevenbits.packages.stateMachine.stateMachineLexer.StateMachineLexer;
+import it.sevenbits.packages.stateMachine.stateMachineLexer.ILexer;
 
 
 /**
@@ -16,7 +15,7 @@ import it.sevenbits.packages.lexer.betterLexer.ILexer;
 public final class App {
     private App(){}
     /**
-     * @param args from here will be taken input and output file paths
+     * @param args will be taken as input and output file paths respectively
      * @throws Exception exception
      */
     public static void main(final String[] args) throws Exception {
@@ -27,14 +26,15 @@ public final class App {
             output = args[1];
         } else {
             input = "src/test/resources/Formatter.java";
+            //input = "src/test/resources/CommandRepositoryTemp.java";
             output = "src/test/resources/codeOutput.java";
         }
-        IFormatter formatter = new BetterFormatter();
+        IFormatter formatter = new StateMachineFormatter();
         try (
                 FileReader reader = new FileReader(input);
                 FileWriter writer = new FileWriter(output)
         ) {
-            ILexer lexer = new BetterLexer(reader);
+            ILexer lexer = new StateMachineLexer(reader);
             formatter.format(lexer, writer);
         } catch (FormatterException e) {
             throw new FormatterException("Something's wrong", e);

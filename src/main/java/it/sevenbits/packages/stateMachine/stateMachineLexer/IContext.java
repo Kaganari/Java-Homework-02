@@ -1,4 +1,4 @@
-package it.sevenbits.packages.lexer.betterLexer;
+package it.sevenbits.packages.stateMachine.stateMachineLexer;
 
 /**
  * The interface that determines what to do with the symbol read,
@@ -25,7 +25,4 @@ public interface IContext {
 
     String getPostponeBuffer();
 
-    void resetPostponeBuffer();
-
-    void resetLexeme();
 }

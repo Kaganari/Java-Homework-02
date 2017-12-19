@@ -1,4 +1,4 @@
-package it.sevenbits.packages.formatter.implementation.betterFormatter;
+package it.sevenbits.packages.stateMachine.stateMachineFormatter;
 
 /**
  * Wrapper for exception

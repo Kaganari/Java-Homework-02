@@ -1,7 +1,7 @@
-package it.sevenbits.packages.formatter.implementation.betterFormatter;
+package it.sevenbits.packages.stateMachine.stateMachineFormatter;
 
-import it.sevenbits.packages.Pair;
-import it.sevenbits.packages.State;
+import it.sevenbits.packages.stateMachine.Pair;
+import it.sevenbits.packages.stateMachine.State;
 import it.sevenbits.packages.token.IToken;
 
 import java.util.HashMap;
@@ -45,6 +45,10 @@ public class StateTransitions implements IStateTransitions {
         transitions.put(new Pair<>(new State("start"), "stringliteral"), new State("start"));
         transitions.put(new Pair<>(new State("default"), "stringliteral"), new State("default"));
 
+        transitions.put(new Pair<>(new State("start"), "uncompletedfor"), new State("default"));
+        transitions.put(new Pair<>(new State("default"), "uncompletedfor"), new State("default"));
+        transitions.put(new Pair<>(new State("start"), "for"), new State("start"));
+        transitions.put(new Pair<>(new State("default"), "for"), new State("default"));
     }
 
     @Override

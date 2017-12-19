@@ -1,4 +1,4 @@
-package it.sevenbits.packages.lexer.betterLexer;
+package it.sevenbits.packages.stateMachine.stateMachineLexer;
 /**
  * A class that defines the necessary actions with a char
  */
@@ -43,12 +43,11 @@ public class Context implements IContext {
     String getTokenLexeme() {
         return tokenLexeme.toString();
     }
-    @Override
+
     public void resetPostponeBuffer() {
         postponeBuffer = new StringBuilder();
     }
 
-    @Override
     public void resetLexeme() {
         tokenLexeme = new StringBuilder();
     }

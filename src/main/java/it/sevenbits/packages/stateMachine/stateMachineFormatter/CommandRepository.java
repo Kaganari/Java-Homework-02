@@ -1,7 +1,7 @@
-package it.sevenbits.packages.formatter.implementation.betterFormatter;
+package it.sevenbits.packages.stateMachine.stateMachineFormatter;
 
-import it.sevenbits.packages.Pair;
-import it.sevenbits.packages.State;
+import it.sevenbits.packages.stateMachine.Pair;
+import it.sevenbits.packages.stateMachine.State;
 import it.sevenbits.packages.token.IToken;
 
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class CommandRepository implements ICommandRepository {
                 (token, context) -> context.writeLexeme(token.getLexeme()));
 
         commands.put(new Pair<>(new State("default"), "space"),
-                (token, context) -> context.writeLexeme(token.getLexeme()));
+                (token, context) -> context.writeChar(' '));
 
         commands.put(new Pair<>(new State("default"), "spaces"),
                 (token, context) -> context.writeLexeme(token.getLexeme()));
@@ -119,6 +119,23 @@ public class CommandRepository implements ICommandRepository {
                 (token, context) -> {
                     context.writeLexeme(token.getLexeme()); });
 
+
+        commands.put(new Pair<>(new State("start"), "uncompletedfor"),
+                (token, context) -> {
+                    context.writeIndent();
+                    context.writeLexeme(token.getLexeme()); });
+
+        commands.put(new Pair<>(new State("start"), "for"),
+                (token, context) -> {
+                    context.writeLexeme(token.getLexeme()); });
+
+        commands.put(new Pair<>(new State("default"), "uncompletedfor"),
+                (token, context) -> {
+                    context.writeLexeme(token.getLexeme()); });
+
+        commands.put(new Pair<>(new State("default"), "for"),
+                (token, context) -> {
+                    context.writeLexeme(token.getLexeme()); });
     }
 
     @Override

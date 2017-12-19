@@ -1,4 +1,4 @@
-package it.sevenbits.packages.lexer.betterLexer;
+package it.sevenbits.packages.stateMachine.stateMachineLexer;
 
 
 import it.sevenbits.packages.token.IToken;

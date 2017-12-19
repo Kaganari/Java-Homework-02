@@ -1,4 +1,4 @@
-package it.sevenbits.packages;
+package it.sevenbits.packages.stateMachine;
 
 /**
  * Created by User on 28.11.2017.

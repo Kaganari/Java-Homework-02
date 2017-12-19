@@ -4,7 +4,7 @@ import it.sevenbits.packages.formatter.FormatterException;
 import it.sevenbits.packages.formatter.IFormatter;
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.IO.writer.WriterException;
-import it.sevenbits.packages.lexer.betterLexer.ILexer;
+import it.sevenbits.packages.stateMachine.stateMachineLexer.ILexer;
 import it.sevenbits.packages.token.IToken;
 import it.sevenbits.packages.lexer.LexerException;
 import it.sevenbits.packages.token.Token;

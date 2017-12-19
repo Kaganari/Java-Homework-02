@@ -1,24 +1,24 @@
-package it.sevenbits.packages.formatter.implementation.betterFormatter;
+package it.sevenbits.packages.stateMachine.stateMachineFormatter;
 
 import it.sevenbits.packages.IO.writer.IWriter;
-import it.sevenbits.packages.State;
+import it.sevenbits.packages.stateMachine.State;
 import it.sevenbits.packages.formatter.FormatterException;
 import it.sevenbits.packages.formatter.IFormatter;
 import it.sevenbits.packages.lexer.LexerException;
-import it.sevenbits.packages.lexer.betterLexer.ILexer;
+import it.sevenbits.packages.stateMachine.stateMachineLexer.ILexer;
 import it.sevenbits.packages.token.IToken;
 
 /**
  * Implementation of IFormatter interface using State Machine
  */
-public class BetterFormatter implements IFormatter {
+public class StateMachineFormatter implements IFormatter {
     private ICommandRepository commands;
     private IStateTransitions transitions;
 
     /**
      * The basic constructor that initializes the instance of a class
      */
-    public BetterFormatter() {
+    public StateMachineFormatter() {
         commands = new CommandRepository();
         transitions = new StateTransitions();
     }

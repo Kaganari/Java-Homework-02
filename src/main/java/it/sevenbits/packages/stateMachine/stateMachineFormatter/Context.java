@@ -1,4 +1,4 @@
-package it.sevenbits.packages.formatter.implementation.betterFormatter;
+package it.sevenbits.packages.stateMachine.stateMachineFormatter;
 
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.IO.writer.WriterException;
@@ -25,6 +25,15 @@ public class Context implements IContext {
             writer.write(lexeme);
         } catch (WriterException e) {
             throw new ContextException("error in Context.writeLexeme(final String lexeme)", e);
+        }
+    }
+
+    @Override
+    public void writeChar(final char ch) throws ContextException {
+        try {
+            writer.write(ch);
+        } catch (WriterException e) {
+            throw new ContextException("error in Context.writeChar(final char ch)", e);
         }
     }
 

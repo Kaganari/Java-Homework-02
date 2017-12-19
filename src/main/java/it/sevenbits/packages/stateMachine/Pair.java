@@ -1,4 +1,4 @@
-package it.sevenbits.packages;
+package it.sevenbits.packages.stateMachine;
 
 /**
  * Generic class

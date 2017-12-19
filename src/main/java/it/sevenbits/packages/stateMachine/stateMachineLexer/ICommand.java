@@ -1,4 +1,4 @@
-package it.sevenbits.packages.lexer.betterLexer;
+package it.sevenbits.packages.stateMachine.stateMachineLexer;
 
 /**
  * Created by User on 29.11.2017.

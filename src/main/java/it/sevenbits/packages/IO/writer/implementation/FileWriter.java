@@ -5,16 +5,13 @@ import it.sevenbits.packages.IO.IClosable;
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.IO.writer.WriterException;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * FileWriter class.
  */
 public class FileWriter implements IWriter, IClosable {
-
-    private FileOutputStream fileOutputStream ;
+    private BufferedWriter writer;
 
     /**
      * Constructor
@@ -23,8 +20,9 @@ public class FileWriter implements IWriter, IClosable {
      */
     public FileWriter(final String fileName) throws WriterException {
         try {
-            fileOutputStream = new FileOutputStream(fileName);
-        } catch (FileNotFoundException e) {
+            //fileOutputStream = new FileOutputStream(fileName);
+            writer = new BufferedWriter(new java.io.FileWriter(fileName));
+        } catch (IOException e) {
             throw new WriterException("Something is wrong with file. Doesn't exist or cannot be opened.", e);
         }
     }
@@ -36,7 +34,7 @@ public class FileWriter implements IWriter, IClosable {
      */
     public void write(final String str) throws WriterException {
         try {
-            fileOutputStream.write(str.getBytes());
+            writer.write(str);
         } catch (IOException e) {
             throw new WriterException("Can't write.", e);
         }
@@ -45,7 +43,7 @@ public class FileWriter implements IWriter, IClosable {
     @Override
     public void write(final char ch) throws WriterException {
         try {
-            fileOutputStream.write(ch);
+            writer.write(ch);
         } catch (IOException e) {
             throw new WriterException("Can't write.", e);
         }
@@ -54,7 +52,7 @@ public class FileWriter implements IWriter, IClosable {
     @Override
     public void close() throws CloseException {
         try {
-            fileOutputStream.close();
+            writer.close();
         } catch (IOException e) {
             throw new CloseException("Can't close the file", e);
         }

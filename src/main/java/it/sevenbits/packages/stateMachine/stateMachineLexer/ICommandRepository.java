@@ -1,7 +1,7 @@
-package it.sevenbits.packages.lexer.betterLexer;
+package it.sevenbits.packages.stateMachine.stateMachineLexer;
 
 
-import it.sevenbits.packages.IState;
+import it.sevenbits.packages.stateMachine.IState;
 
 /**
  * Created by User on 06.12.2017.

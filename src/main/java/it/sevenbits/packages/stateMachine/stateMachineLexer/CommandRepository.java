@@ -1,8 +1,8 @@
-package it.sevenbits.packages.lexer.betterLexer;
+package it.sevenbits.packages.stateMachine.stateMachineLexer;
 
-import it.sevenbits.packages.IState;
-import it.sevenbits.packages.Pair;
-import it.sevenbits.packages.State;
+import it.sevenbits.packages.stateMachine.IState;
+import it.sevenbits.packages.stateMachine.Pair;
+import it.sevenbits.packages.stateMachine.State;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +27,9 @@ public class CommandRepository implements ICommandRepository {
 
 
         commands.put(new Pair<>(new State("default"), '\r'),
+                (c, context) -> {
+                    context.appendLexeme(c); context.setTokenName("newline"); });
+        commands.put(new Pair<>(new State("default"), '\n'),
                 (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("newline"); });
 
@@ -132,30 +135,34 @@ public class CommandRepository implements ICommandRepository {
                 (c, context) -> {
                     context.appendLexeme(c); });
 
-//
-//        commands.put(new Pair<>(new State("default"), 'f'),
-//                (c, context) -> {
-//                    context.appendLexeme(c); context.setTokenName("uncompletedfor"); });
-//
-//        commands.put(new Pair<>(new State("f"), null),
-//                (c, context) -> {
-//                    context.appendPostpone(c); });
-//
-//        commands.put(new Pair<>(new State("f"), 'o'),
-//                (c, context) -> {
-//                    context.appendLexeme(c); context.setTokenName("uncompletedfor"); });
-//
-//        commands.put(new Pair<>(new State("fo"), 'r'),
-//                (c, context) -> {
-//                    context.appendLexeme(c); context.setTokenName("for"); });
-//
-//        commands.put(new Pair<>(new State("fo"), null),
-//                (c, context) -> {
-//                    context.appendPostpone(c); });
-//
-//        commands.put(new Pair<>(new State("for"), ';'),
-//                (c, context) -> {
-//                    context.appendLexeme(c); context.setTokenName("stringliteral"); });
+
+        commands.put(new Pair<>(new State("default"), 'f'),
+                (c, context) -> {
+                    context.appendLexeme(c); context.setTokenName("uncompletedfor"); });
+
+        commands.put(new Pair<>(new State("f"), null),
+                (c, context) -> {
+                    context.appendPostpone(c); });
+
+        commands.put(new Pair<>(new State("f"), 'o'),
+                (c, context) -> {
+                    context.appendLexeme(c); context.setTokenName("uncompletedfor"); });
+
+        commands.put(new Pair<>(new State("fo"), 'r'),
+                (c, context) -> {
+                    context.appendLexeme(c); context.setTokenName("for"); });
+
+        commands.put(new Pair<>(new State("fo"), null),
+                (c, context) -> {
+                    context.appendPostpone(c); });
+
+        commands.put(new Pair<>(new State("for"), null),
+                (c, context) -> {
+                    context.appendLexeme(c); });
+
+        commands.put(new Pair<>(new State("for"), '{'),
+                (c, context) -> {
+                    context.appendPostpone(c); });
     }
 
     @Override
