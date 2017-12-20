@@ -19,9 +19,19 @@ public class LexerException extends Exception {
     public LexerException(final String message, final Exception e) {
         super(message, e);
     }
+
+    /**
+     * Constructor for lexer exception
+     * @param message error message
+     */
     public LexerException(final String message) {
         super(message);
     }
+
+    /**
+     * Constructor for lexer exception
+     * @param cause cause
+     */
     public LexerException(final Throwable cause) {
         super(cause);
     }

@@ -1,7 +1,7 @@
 package it.sevenbits.packages.stateMachine;
 
 /**
- * Created by User on 28.11.2017.
+ * Implementation os IState
  */
 public class State implements IState {
     private final String name;

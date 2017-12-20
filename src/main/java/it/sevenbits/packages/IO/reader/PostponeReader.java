@@ -5,11 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by User on 04.12.2017.
+ * Implementation of IReader interface for postponing some chars
  */
 public class PostponeReader implements IReader {
     private List<Character> postponeList = Collections.synchronizedList(new LinkedList());
-    char tempChar;
 
     @Override
     public boolean hasMoreChars() throws ReaderException {
@@ -18,10 +17,15 @@ public class PostponeReader implements IReader {
 
     @Override
     public char readChar() throws ReaderException {
-        tempChar = postponeList.get(0);
+        char tempChar = postponeList.get(0);
         postponeList.remove(0);
         return tempChar;
     }
+
+
+    /**
+     * @param ch char to list
+     */
     public void addCharToList(final char ch) {
         postponeList.add(ch);
     }

@@ -60,8 +60,7 @@ public class CommandRepository implements ICommandRepository {
                     context.appendLexeme(c); context.setTokenName("space"); });
 
         commands.put(new Pair<>(new State("spacing"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+                (c, context) -> context.appendPostpone(c));
 
 
         commands.put(new Pair<>(new State("default"), '/'),
@@ -73,8 +72,7 @@ public class CommandRepository implements ICommandRepository {
                     context.appendLexeme(c); context.setTokenName("onelinecomment"); });
 
         commands.put(new Pair<>(new State("slash"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+                (c, context) -> context.appendPostpone(c));
 
 
         commands.put(new Pair<>(new State("onelinecomment"), null),
@@ -87,8 +85,7 @@ public class CommandRepository implements ICommandRepository {
                     context.appendLexeme(c); context.setTokenName("openmultilinecomment"); });
 
         commands.put(new Pair<>(new State("openmultilinecomment"), null),
-                (c, context) -> {
-                    context.appendLexeme(c); });
+                (c, context) -> context.appendLexeme(c));
 
         commands.put(new Pair<>(new State("openmultilinecomment"), '*'),
                 (c, context) -> {
@@ -104,20 +101,17 @@ public class CommandRepository implements ICommandRepository {
 
 
         commands.put(new Pair<>(new State("default"), '*'),
-                (c, context) -> {
-                    context.appendLexeme(c); });
+                (c, context) -> context.appendLexeme(c));
 
         commands.put(new Pair<>(new State("star"), '/'),
                 (c, context) -> {
                     context.appendLexeme(c); context.setTokenName("closemultilinecomment"); });
 
         commands.put(new Pair<>(new State("closemultilinecomment"), '\r'),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+                (c, context) -> context.appendPostpone(c));
 
         commands.put(new Pair<>(new State("star"), ';'),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+                (c, context) -> context.appendPostpone(c));
 
         commands.put(new Pair<>(new State("default"), '"'),
                 (c, context) -> {
@@ -128,12 +122,10 @@ public class CommandRepository implements ICommandRepository {
                     context.appendLexeme(c); context.setTokenName("stringliteral"); });
 
         commands.put(new Pair<>(new State("stringliteral"), null),
-                (c, context) -> {
-                    context.appendLexeme(c); });
+                (c, context) -> context.appendLexeme(c));
 
         commands.put(new Pair<>(new State("stringliteralbackslash"), null),
-                (c, context) -> {
-                    context.appendLexeme(c); });
+                (c, context) -> context.appendLexeme(c));
 
 
         commands.put(new Pair<>(new State("default"), 'f'),
@@ -141,8 +133,7 @@ public class CommandRepository implements ICommandRepository {
                     context.appendLexeme(c); context.setTokenName("uncompletedfor"); });
 
         commands.put(new Pair<>(new State("f"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+                (c, context) -> context.appendPostpone(c));
 
         commands.put(new Pair<>(new State("f"), 'o'),
                 (c, context) -> {
@@ -153,16 +144,13 @@ public class CommandRepository implements ICommandRepository {
                     context.appendLexeme(c); context.setTokenName("for"); });
 
         commands.put(new Pair<>(new State("fo"), null),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+                (c, context) -> context.appendPostpone(c));
 
         commands.put(new Pair<>(new State("for"), null),
-                (c, context) -> {
-                    context.appendLexeme(c); });
+                (c, context) -> context.appendLexeme(c));
 
         commands.put(new Pair<>(new State("for"), '{'),
-                (c, context) -> {
-                    context.appendPostpone(c); });
+                (c, context) -> context.appendPostpone(c));
     }
 
     @Override

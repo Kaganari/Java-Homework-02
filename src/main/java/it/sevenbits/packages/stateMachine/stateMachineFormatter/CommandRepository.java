@@ -112,12 +112,10 @@ public class CommandRepository implements ICommandRepository {
                     context.writeLexeme(token.getLexeme()); });
 
         commands.put(new Pair<>(new State("default"), "stringliteral"),
-                (token, context) -> {
-                    context.writeLexeme(token.getLexeme()); });
+                (token, context) -> context.writeLexeme(token.getLexeme()));
 
         commands.put(new Pair<>(new State("start"), "stringliteral"),
-                (token, context) -> {
-                    context.writeLexeme(token.getLexeme()); });
+                (token, context) -> context.writeLexeme(token.getLexeme()));
 
 
         commands.put(new Pair<>(new State("start"), "uncompletedfor"),
@@ -126,16 +124,13 @@ public class CommandRepository implements ICommandRepository {
                     context.writeLexeme(token.getLexeme()); });
 
         commands.put(new Pair<>(new State("start"), "for"),
-                (token, context) -> {
-                    context.writeLexeme(token.getLexeme()); });
+                (token, context) -> context.writeLexeme(token.getLexeme()));
 
         commands.put(new Pair<>(new State("default"), "uncompletedfor"),
-                (token, context) -> {
-                    context.writeLexeme(token.getLexeme()); });
+                (token, context) -> context.writeLexeme(token.getLexeme()));
 
         commands.put(new Pair<>(new State("default"), "for"),
-                (token, context) -> {
-                    context.writeLexeme(token.getLexeme()); });
+                (token, context) -> context.writeLexeme(token.getLexeme()));
     }
 
     @Override

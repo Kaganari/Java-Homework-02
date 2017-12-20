@@ -30,7 +30,7 @@ public class Lexer implements ILexer {
     }
 
     @Override
-    public IToken readToken() throws LexerException{
+    public IToken readToken() throws LexerException {
         try {
             String name;
             String lexeme;

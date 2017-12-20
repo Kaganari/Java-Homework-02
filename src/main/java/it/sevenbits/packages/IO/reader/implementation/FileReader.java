@@ -5,9 +5,7 @@ import it.sevenbits.packages.IO.IClosable;
 import it.sevenbits.packages.IO.reader.IReader;
 import it.sevenbits.packages.IO.reader.ReaderException;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 /**

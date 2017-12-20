@@ -1,7 +1,7 @@
 package it.sevenbits.packages.stateMachine;
 
 /**
- * Created by User on 24.11.2017.
+ * State interface for State Machine
  */
 public interface IState {
 

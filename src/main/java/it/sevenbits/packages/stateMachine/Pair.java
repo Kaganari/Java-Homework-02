@@ -30,7 +30,8 @@ public class Pair<T, U> {
             return false;
         }
         Pair<?, ?> pair = (Pair<?, ?>) o;
-        return (first != null ? first.equals(pair.first) : pair.first == null) && (second != null ? second.equals(pair.second) : pair.second == null);
+        return (first != null ? first.equals(pair.first) : pair.first == null) &&
+                (second != null ? second.equals(pair.second) : pair.second == null);
     }
 
     @Override

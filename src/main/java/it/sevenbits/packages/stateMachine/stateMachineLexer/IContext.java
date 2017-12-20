@@ -23,6 +23,9 @@ public interface IContext {
      */
     void appendPostpone(char c);
 
+    /**
+     * @return postpone buffer
+     */
     String getPostponeBuffer();
 
 }

@@ -5,6 +5,11 @@ import it.sevenbits.packages.token.IToken;
 /**
  * Interface for commands
  */
-public interface ICommand {
+interface ICommand {
+    /**
+     * @param token token
+     * @param context context
+     * @throws ContextException exception
+     */
     void execute(IToken token, IContext context) throws ContextException;
 }

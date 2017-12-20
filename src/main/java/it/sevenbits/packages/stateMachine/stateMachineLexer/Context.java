@@ -2,7 +2,7 @@ package it.sevenbits.packages.stateMachine.stateMachineLexer;
 /**
  * A class that defines the necessary actions with a char
  */
-public class Context implements IContext {
+class Context implements IContext {
 
     private String tokenName;
     private StringBuilder tokenLexeme;
@@ -11,7 +11,7 @@ public class Context implements IContext {
     /**
      * The basic constructor that initializes the instance of a class
      */
-    public Context() {
+    Context() {
         tokenLexeme = new StringBuilder();
         postponeBuffer = new StringBuilder();
     }
@@ -44,11 +44,17 @@ public class Context implements IContext {
         return tokenLexeme.toString();
     }
 
-    public void resetPostponeBuffer() {
+    /**
+     * Resetting postpone buffer
+     */
+    void resetPostponeBuffer() {
         postponeBuffer = new StringBuilder();
     }
 
-    public void resetLexeme() {
+    /**
+     * Resetting lexeme
+     */
+    void resetLexeme() {
         tokenLexeme = new StringBuilder();
     }
 }

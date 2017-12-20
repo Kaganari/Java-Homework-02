@@ -12,7 +12,6 @@ public class StringReader implements IReader {
     /**
      * Class constructor
      * @param inputString input string for reading
-     * @throws ReaderException custom reader exception
      */
     public StringReader(final String inputString) {
         this.inputString = inputString;
@@ -21,7 +20,6 @@ public class StringReader implements IReader {
     /**
      * Returning read char
      * @return one char
-     * @throws ReaderException custom reader exception
      */
     public boolean hasMoreChars() {
         return (position < inputString.length() - 1);

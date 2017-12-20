@@ -3,8 +3,13 @@ package it.sevenbits.packages.stateMachine.stateMachineLexer;
 import it.sevenbits.packages.stateMachine.IState;
 
 /**
- * Created by User on 04.12.2017.
+ * Interface for transitions between states in lexer
  */
 public interface IStateTransitions {
-    public IState getNextState(IState currentState, char ch);
+    /**
+     * @param currentState current state
+     * @param ch input char
+     * @return next state
+     */
+    IState getNextState(IState currentState, char ch);
 }

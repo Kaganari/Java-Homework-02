@@ -5,7 +5,8 @@ import it.sevenbits.packages.IO.IClosable;
 import it.sevenbits.packages.IO.writer.IWriter;
 import it.sevenbits.packages.IO.writer.WriterException;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * FileWriter class.
