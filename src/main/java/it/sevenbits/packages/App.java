@@ -25,9 +25,9 @@ public final class App {
             input = args[0];
             output = args[1];
         } else {
-            input = "src/test/resources/Formatter.java";
+            input = "src/main/resources/Formatter";
             //input = "src/test/resources/CommandRepositoryTemp.java";
-            output = "src/test/resources/codeOutput.java";
+            output = "src/main/resources/codeOutput";
         }
         IFormatter formatter = new StateMachineFormatter();
         try (
